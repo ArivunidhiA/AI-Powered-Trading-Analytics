@@ -1,0 +1,13 @@
+{
+  "/api/market/route": "app/api/market/route.js",
+  "/api/portfolio/route": "app/api/portfolio/route.js",
+  "/api/signals/route": "app/api/signals/route.js",
+  "/api/risk/route": "app/api/risk/route.js",
+  "/api/news/route": "app/api/news/route.js",
+  "/dashboard/signals/page": "app/dashboard/signals/page.js",
+  "/dashboard/portfolio/page": "app/dashboard/portfolio/page.js",
+  "/dashboard/market/page": "app/dashboard/market/page.js",
+  "/dashboard/news/page": "app/dashboard/news/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/risk/page": "app/dashboard/risk/page.js"
+}
