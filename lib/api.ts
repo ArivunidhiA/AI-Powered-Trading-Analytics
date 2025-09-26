@@ -113,7 +113,7 @@ export async function fetchMarketData(symbol: string) {
       }
     };
   } catch (error) {
-    console.log('Using mock data for market:', error);
+    console.log('Yahoo Finance API failed, using mock data:', error);
     return {
       success: true,
       data: { ...mockMarketData, symbol }
@@ -139,13 +139,46 @@ export async function fetchPortfolio() {
 
 export async function fetchSignals(symbol: string) {
   try {
-    // In a real app, this would call your AI service
-    return {
-      success: true,
-      data: { ...mockSignals[0], symbol }
-    };
+    // Try to get real market data first
+    const marketData = await fetchMarketData(symbol);
+    
+    if (marketData.success && process.env.NEXT_PUBLIC_OPENAI_API_KEY) {
+      // Use OpenAI to analyze the data
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages: [{
+            role: 'user',
+            content: `Analyze this stock data for ${symbol}: Price: $${marketData.data.price}, Change: ${marketData.data.changePercent}%. Provide a trading recommendation (BUY/SELL/HOLD) with confidence score (0-1) and reasoning. Format as JSON with: recommendation, confidence, reasoning, technicalIndicators array with name, value, signal, description.`
+          }]
+        })
+      });
+      
+      const aiResponse = await response.json();
+      const analysis = JSON.parse(aiResponse.choices[0].message.content);
+      
+      return {
+        success: true,
+        data: {
+          id: `ai-${Date.now()}`,
+          symbol,
+          recommendation: analysis.recommendation,
+          confidence: analysis.confidence,
+          reasoning: analysis.reasoning,
+          technicalIndicators: analysis.technicalIndicators || [],
+          timestamp: new Date().toISOString()
+        }
+      };
+    }
+    
+    throw new Error('No AI analysis available');
   } catch (error) {
-    console.log('Using mock data for signals:', error);
+    console.log('OpenAI API failed, using mock data:', error);
     return {
       success: true,
       data: { ...mockSignals[0], symbol }
@@ -155,13 +188,31 @@ export async function fetchSignals(symbol: string) {
 
 export async function fetchNews(limit: number = 10) {
   try {
-    // In a real app, this would fetch from news APIs
-    return {
-      success: true,
-      data: mockNews.slice(0, limit)
-    };
+    // Try to fetch real news data from Finnhub
+    const response = await fetch(`https://finnhub.io/api/v1/news?category=general&token=${process.env.NEXT_PUBLIC_FINNHUB_API_KEY}`);
+    const newsData = await response.json();
+    
+    if (newsData && newsData.length > 0) {
+      const processedNews = newsData.slice(0, limit).map((item: any, index: number) => ({
+        id: `real-${index}`,
+        title: item.headline,
+        summary: item.summary || item.headline,
+        source: item.source,
+        publishedAt: new Date(item.datetime * 1000).toISOString(),
+        url: item.url,
+        sentiment: 'neutral' as const, // Would need AI analysis
+        sentimentScore: 0
+      }));
+      
+      return {
+        success: true,
+        data: processedNews
+      };
+    }
+    
+    throw new Error('No news data received');
   } catch (error) {
-    console.log('Using mock data for news:', error);
+    console.log('Finnhub API failed, using mock data:', error);
     return {
       success: true,
       data: mockNews.slice(0, limit)
