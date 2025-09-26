@@ -1,1 +1,15 @@
-{}
+{
+  "/_not-found": "app/_not-found.js",
+  "/api/market/route": "app/api/market/route.js",
+  "/api/portfolio/route": "app/api/portfolio/route.js",
+  "/api/risk/route": "app/api/risk/route.js",
+  "/api/news/route": "app/api/news/route.js",
+  "/page": "app/page.js",
+  "/api/signals/route": "app/api/signals/route.js",
+  "/dashboard/news/page": "app/dashboard/news/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/portfolio/page": "app/dashboard/portfolio/page.js",
+  "/dashboard/risk/page": "app/dashboard/risk/page.js",
+  "/dashboard/signals/page": "app/dashboard/signals/page.js",
+  "/dashboard/market/page": "app/dashboard/market/page.js"
+}

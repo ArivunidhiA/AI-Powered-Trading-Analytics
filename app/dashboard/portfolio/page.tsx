@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Portfolio, Position } from '@/types';
 import { TrendingUp, TrendingDown, Plus, Trash2, Eye, EyeOff } from 'lucide-react';
+import { fetchPortfolio } from '@/lib/api';
 
 export default function PortfolioPage() {
   const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
@@ -15,11 +16,10 @@ export default function PortfolioPage() {
     price: 0
   });
 
-  const fetchPortfolio = async () => {
+  const fetchPortfolioData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/portfolio');
-      const data = await response.json();
+      const data = await fetchPortfolio();
       
       if (data.success) {
         setPortfolio(data.data);
@@ -32,7 +32,7 @@ export default function PortfolioPage() {
   };
 
   useEffect(() => {
-    fetchPortfolio();
+    fetchPortfolioData();
   }, []);
 
   const handleAddPosition = async (e: React.FormEvent) => {

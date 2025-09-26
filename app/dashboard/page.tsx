@@ -8,6 +8,7 @@ import PortfolioSummary from '@/components/PortfolioSummary';
 import AISignals from '@/components/AISignals';
 import NewsFeed from '@/components/NewsFeed';
 import { MarketData, Portfolio, AISignal, NewsItem } from '@/types';
+import { fetchMarketData, fetchPortfolio, fetchSignals, fetchNews } from '@/lib/api';
 
 export default function Dashboard() {
   const [marketData, setMarketData] = useState<MarketData | null>(null);
@@ -21,19 +22,12 @@ export default function Dashboard() {
       try {
         setLoading(true);
         
-        // Fetch all data in parallel
-        const [marketRes, portfolioRes, signalsRes, newsRes] = await Promise.all([
-          fetch('/api/market?symbol=AAPL'),
-          fetch('/api/portfolio'),
-          fetch('/api/signals?symbol=AAPL'),
-          fetch('/api/news?limit=5')
-        ]);
-
+        // Fetch all data in parallel using client-side API
         const [marketData, portfolioData, signalsData, newsData] = await Promise.all([
-          marketRes.json(),
-          portfolioRes.json(),
-          signalsRes.json(),
-          newsRes.json()
+          fetchMarketData('AAPL'),
+          fetchPortfolio(),
+          fetchSignals('AAPL'),
+          fetchNews(5)
         ]);
 
         if (marketData.success) setMarketData(marketData.data);

@@ -6,6 +6,7 @@ import AISignals from '@/components/AISignals';
 import { AISignal } from '@/types';
 import { STOCKS, searchStocks } from '@/data/stocks';
 import { Search, RefreshCw, Brain, Target, ChevronDown, X } from 'lucide-react';
+import { fetchSignals } from '@/lib/api';
 
 export default function SignalsPage() {
   const [signals, setSignals] = useState<AISignal[]>([]);
@@ -19,8 +20,7 @@ export default function SignalsPage() {
   const fetchSignal = async (symbol: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/signals?symbol=${symbol}`);
-      const data = await response.json();
+      const data = await fetchSignals(symbol);
       
       if (data.success) {
         setSignals(prev => {

@@ -1,3 +1,96 @@
 {
-  "pages": {}
+  "pages": {
+    "/_not-found": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/app/_not-found-361d49ccb8efb791.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/css/8667e203a4020218.css",
+      "static/chunks/app/layout-dbcc6f2129c77c1b.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/278-c929688577a11a0c.js",
+      "static/chunks/app/page-c107d02e932a1d26.js"
+    ],
+    "/dashboard/layout": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/278-c929688577a11a0c.js",
+      "static/chunks/app/dashboard/layout-08ef59bbdacafb09.js"
+    ],
+    "/dashboard/news/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/app/dashboard/news/page-a49e814e9014101d.js"
+    ],
+    "/dashboard/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/124-ed185bac708ca9d3.js",
+      "static/chunks/256-d12523ad3055a6fc.js",
+      "static/chunks/app/dashboard/page-b678bc2ecccf935d.js"
+    ],
+    "/dashboard/portfolio/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/app/dashboard/portfolio/page-0547a24f18e2c142.js"
+    ],
+    "/dashboard/risk/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/app/dashboard/risk/page-a0c4f761e61e366b.js"
+    ],
+    "/dashboard/signals/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/965-d307f6cd8c02f710.js",
+      "static/chunks/app/dashboard/signals/page-1b0c2db4a1edc7ad.js"
+    ],
+    "/dashboard/market/page": [
+      "static/chunks/webpack-e8f0548fcc90b9c1.js",
+      "static/chunks/fd9d1056-137024331f0e75e5.js",
+      "static/chunks/938-6c926dd8df7936b8.js",
+      "static/chunks/main-app-147ac3d5e5f83eb4.js",
+      "static/chunks/135-ac64255fb173d4ef.js",
+      "static/chunks/681-e1c532b033c76333.js",
+      "static/chunks/124-ed185bac708ca9d3.js",
+      "static/chunks/965-d307f6cd8c02f710.js",
+      "static/chunks/app/dashboard/market/page-fce263a758be4027.js"
+    ]
+  }
 }

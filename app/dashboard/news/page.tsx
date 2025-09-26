@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import NewsFeed from '@/components/NewsFeed';
 import { NewsItem } from '@/types';
 import { RefreshCw, Filter, Search, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { fetchNews } from '@/lib/api';
 
 export default function NewsPage() {
   const [news, setNews] = useState<NewsItem[]>([]);
@@ -12,11 +13,10 @@ export default function NewsPage() {
   const [filter, setFilter] = useState<'all' | 'positive' | 'negative' | 'neutral'>('all');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const fetchNews = async () => {
+  const fetchNewsData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/news?limit=20');
-      const data = await response.json();
+      const data = await fetchNews(20);
       
       if (data.success) {
         setNews(data.data);
@@ -29,7 +29,7 @@ export default function NewsPage() {
   };
 
   useEffect(() => {
-    fetchNews();
+    fetchNewsData();
   }, []);
 
   const filteredNews = news.filter(item => {
@@ -61,7 +61,7 @@ export default function NewsPage() {
         </div>
         
         <button
-          onClick={fetchNews}
+          onClick={fetchNewsData}
           disabled={loading}
           className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-blue rounded-lg text-white font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
         >

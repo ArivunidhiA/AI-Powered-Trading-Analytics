@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { RiskMetrics } from '@/types';
 import { Shield, TrendingUp, TrendingDown, AlertTriangle, BarChart3, Search } from 'lucide-react';
+import { fetchRiskMetrics as fetchRiskData } from '@/lib/api';
 
 export default function RiskPage() {
   const [riskMetrics, setRiskMetrics] = useState<RiskMetrics | null>(null);
   const [searchSymbol, setSearchSymbol] = useState('AAPL');
   const [loading, setLoading] = useState(false);
 
-  const fetchRiskMetrics = async (symbol: string) => {
+  const fetchRiskMetricsData = async (symbol: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/risk?symbol=${symbol}`);
-      const data = await response.json();
+      const data = await fetchRiskData(symbol);
       
       if (data.success) {
         setRiskMetrics(data.data);
@@ -29,12 +29,12 @@ export default function RiskPage() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchSymbol.trim()) {
-      fetchRiskMetrics(searchSymbol.trim());
+      fetchRiskMetricsData(searchSymbol.trim());
     }
   };
 
   useEffect(() => {
-    fetchRiskMetrics('AAPL');
+    fetchRiskMetricsData('AAPL');
   }, []);
 
   const getRiskLevel = (volatility: number) => {

@@ -6,6 +6,7 @@ import MarketChart from '@/components/MarketChart';
 import { MarketData } from '@/types';
 import { STOCKS, searchStocks } from '@/data/stocks';
 import { Search, TrendingUp, TrendingDown, Volume, DollarSign, ChevronDown, X } from 'lucide-react';
+import { fetchMarketData } from '@/lib/api';
 
 export default function MarketPage() {
   const [marketData, setMarketData] = useState<MarketData | null>(null);
@@ -15,11 +16,10 @@ export default function MarketPage() {
   const [stockSearchQuery, setStockSearchQuery] = useState('');
   const [selectedSector, setSelectedSector] = useState('All');
 
-  const fetchMarketData = async (symbol: string) => {
+  const fetchMarketDataForSymbol = async (symbol: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/market?symbol=${symbol}`);
-      const data = await response.json();
+      const data = await fetchMarketData(symbol);
       
       if (data.success) {
         setMarketData(data.data);
@@ -32,13 +32,13 @@ export default function MarketPage() {
   };
 
   useEffect(() => {
-    fetchMarketData(searchSymbol);
+    fetchMarketDataForSymbol(searchSymbol);
   }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchSymbol.trim()) {
-      fetchMarketData(searchSymbol.trim());
+      fetchMarketDataForSymbol(searchSymbol.trim());
     }
   };
 
@@ -46,7 +46,7 @@ export default function MarketPage() {
     setSearchSymbol(symbol);
     setShowStockSelector(false);
     setStockSearchQuery('');
-    fetchMarketData(symbol);
+    fetchMarketDataForSymbol(symbol);
   };
 
   const getFilteredStocks = () => {
